@@ -1,0 +1,37 @@
+<div>
+    <form #meuFormulario="ngForm" (ngSubmit)="salvar()">
+        <fieldset>
+            <legend>Nome</legend>
+            <input #campoNome="ngModel" type="text" [(ngModel)]="nome" name="nome" 
+            required minlength="3" maxlength="30">
+            @if (campoNome.invalid && campoNome.touched) {
+                <div>Nome obrigatório</div>
+            }
+        </fieldset>
+        <fieldset>
+            <legend>Curso</legend>
+            <input #campoCurso="ngModel" type="text" [(ngModel)]="curso" name="curso" 
+            required minlength="3" maxlength="30">
+            @if (campoCurso.invalid && campoCurso.touched) {
+                <div>Curso obrigatório</div>
+            }
+        </fieldset>
+
+        <div>
+            <button [disabled]="meuFormulario.invalid">
+                Salvar
+            </button>
+        </div>
+    </form>
+    <hr>
+    <h1>Itens</h1>
+    <table>
+        @for (usuario of usuarios; track usuario.nome) {
+        <tr>
+            <td>{{usuario.nome}}</td>
+            <td>{{usuario.curso}}</td>
+        </tr>
+        }
+    </table>
+
+</div>
